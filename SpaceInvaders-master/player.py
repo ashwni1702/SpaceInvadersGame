@@ -1,16 +1,12 @@
 from turtle import Turtle
 
-STARTING_POSITION = (0, -370)
-MOVE_DISTANCE = 30
-SHOOT_DISTANCE = 40
-X_LEFT_SCREEN = -360
-X_RIGHT_SCREEN = 360
-
-
 class PlayerShip(Turtle):
+    STARTING_POSITION = (0, -370)
+    MOVE_DISTANCE = 30
+    X_LEFT_SCREEN = -360
+    X_RIGHT_SCREEN = 360
+
     def __init__(self):
-        """Initiates class PlayerShip, inherits from Turtle super class, sets initial attributes, calls method
-        go_to_start()"""
         super().__init__()
         self.shape("square")
         self.shapesize(stretch_wid=0.6, stretch_len=2)
@@ -19,29 +15,20 @@ class PlayerShip(Turtle):
         self.go_to_start()
 
     def go_to_start(self):
-        """Calls method goto() with set input starting_position"""
-        self.goto(STARTING_POSITION)
+        self.goto(PlayerShip.STARTING_POSITION)
 
     def go_right(self):
-        """If PlayerShip is left of right screen limit, calls method forward with set distance move_distance and
-        moves PlayerShip horizontally across the screen towards the right."""
-        if self.xcor() > X_RIGHT_SCREEN:
-            pass
-        else:
-            self.forward(MOVE_DISTANCE)
+        if self.xcor() < PlayerShip.X_RIGHT_SCREEN:
+            self.forward(PlayerShip.MOVE_DISTANCE)
 
     def go_left(self):
-        """If PlayerShip is right of left screen limit, calls method backward with set distance move_distance and
-        moves PlayerShip horizontally across the screen towards the left."""
-        if self.xcor() < X_LEFT_SCREEN:
-            pass
-        else:
-            self.backward(MOVE_DISTANCE)
-
+        if self.xcor() > PlayerShip.X_LEFT_SCREEN:
+            self.backward(PlayerShip.MOVE_DISTANCE)
 
 class Shooter(Turtle):
-    """Initiates class Shooter, inherits from Turtle super class, sets initial attributes, calls method
-    go_to_start()"""
+    STARTING_POSITION = (0, -370)
+    SHOOT_DISTANCE = 40
+
     def __init__(self):
         super().__init__()
         self.shape("square")
@@ -53,9 +40,7 @@ class Shooter(Turtle):
         self.go_to_start()
 
     def go_to_start(self):
-        """Calls method goto() with set input starting_position"""
-        self.goto(STARTING_POSITION)
+        self.goto(Shooter.STARTING_POSITION)
 
     def move(self):
-        """Calls method forward() with set input shoot_distance"""
-        self.forward(SHOOT_DISTANCE)
+        self.forward(Shooter.SHOOT_DISTANCE)
